@@ -2,11 +2,10 @@ package com.dgn.movies.controller;
 
 import com.dgn.movies.domain.Movie;
 import com.dgn.movies.service.MovieService;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,11 +14,23 @@ import java.util.List;
 public class MovieController {
 
     @Autowired
-    MovieService movieService;
+    private MovieService movieService;
 
     @GetMapping
-    public ResponseEntity<List<Movie>> allMovies(){
+    public ResponseEntity<List<Movie>> getAllMovies(){
        List<Movie> movies =  movieService.getAllMovies();
        return ResponseEntity.ok(movies);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Movie> getMovieById(@PathVariable("id") ObjectId id){
+        Movie movie = movieService.getMovieById(id);
+        return ResponseEntity.ok(movie);
+    }
+
+    @GetMapping("movie")
+    public ResponseEntity<Movie> getMovieByName(@RequestParam("name") String movieName){
+        Movie movie = movieService.getMovieByName(movieName);
+        return ResponseEntity.ok(movie);
     }
 }
