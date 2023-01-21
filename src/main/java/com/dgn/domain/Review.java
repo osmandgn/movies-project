@@ -1,4 +1,4 @@
-package com.dgn.movies;
+package com.dgn.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
