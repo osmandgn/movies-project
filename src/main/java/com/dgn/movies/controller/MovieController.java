@@ -28,7 +28,7 @@ public class MovieController {
         return ResponseEntity.ok(movie);
     }
 
-    @GetMapping("movie")
+    @GetMapping("/movie")
     public ResponseEntity<Movie> getMovieByName(@RequestParam("name") String movieName){
         Movie movie = movieService.getMovieByName(movieName);
         return ResponseEntity.ok(movie);
